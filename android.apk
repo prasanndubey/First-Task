@@ -1,0 +1,52 @@
+package com.example.delta;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends Activity implements OnClickListener {
+  TextView tv;
+	EditText edt;
+	Button btn;
+//making it global variable
+	@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        tv=(TextView)findViewById(R.id.textView1);
+        edt=(EditText)findViewById(R.id.editText1);
+        btn=(Button)findViewById(R.id.button1);
+        btn.setOnClickListener(this);        
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflating the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.activity_main, menu);
+        return true;
+    }
+
+	@Override
+	public void onClick(View arg0) {
+		String str,str1="";
+		str=edt.getText().toString();
+		char a[]=str.toCharArray();
+		int l=a.length;
+		//converting the input string to an char array of its constituent characters 
+		int k[]=new int[l];
+		for(int i=0;i<l;i++)
+		{
+			k[i]=(int)Math.floor(10*(Math.random())); //to store random index of the characters
+		}
+		for(int j=0;j<l;j++)
+		{
+			str1=str1+a[k[j]]; //to print random characters of the string entered
+		}
+		tv.setText(str1);	
+	}
+    
+}
